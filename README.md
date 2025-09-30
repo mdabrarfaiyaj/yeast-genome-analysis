@@ -6,9 +6,9 @@ The project uses **R and Bioconductor** packages to extract genomic annotations,
 ---
 
 ## 🚀 Features
-- Extract coding vs non-coding sequences per chromosome
-- Compute GC content for both regions
-- Save results as CSV and PNG plots
+- Extract coding vs non-coding sequences per chromosome.
+- Compute GC content for both regions.
+- Save results as CSV and PNG plots.
 - Visualize:
   - GC content per chromosome
   - Average genome-wide GC content
@@ -16,19 +16,54 @@ The project uses **R and Bioconductor** packages to extract genomic annotations,
 
 ---
 
-## 📦 Requirements
+## 📂 Output Files
+Place all output files in the `results/` folder:
 
-```R
-install.packages("ggplot2")
-install.packages("dplyr")
+- `yeast_coding_vs_noncoding_all_chr.csv`  
+- `GCcontent_per_chromosome.png`  
+- `GCcontent_genomewide.png`  
+- `genome_composition_pie.png`  
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+---
 
-BiocManager::install(c(
-    "BSgenome",
-    "BSgenome.Scerevisiae.UCSC.sacCer3",
-    "Biostrings",
-    "GenomicRanges",
-    "TxDb.Scerevisiae.UCSC.sacCer3.sgdGene"
-))
+## 📊 Example Results
+
+<img src="results/GCcontent_per_chromosome.png" width="500">
+<img src="results/GCcontent_genomewide.png" width="500">
+<img src="results/genome_composition_pie.png" width="400">
+
+---
+
+## 🧾 Analysis and Interpretation
+
+### GC Content Distribution
+- Coding regions: ~40% GC  
+- Non-coding regions: ~38% GC  
+- Mitochondrial DNA: <25% GC
+
+### Genome Composition
+- Coding DNA: ~42.5%  
+- Non-coding DNA: ~57.5%  
+
+---
+
+## 🔬 Biological Insights
+- Higher GC in coding DNA → stable, efficient transcription.  
+- Non-coding DNA → regulatory flexibility, genome evolution.  
+- Mitochondrial genome → distinct evolutionary path.
+
+---
+
+## ✅ Conclusion
+This analysis highlights how nucleotide composition varies by genomic region, influencing gene expression, genome stability, and evolution in *Saccharomyces cerevisiae*.
+
+---
+
+## 👨‍💻 Author
+Md Abrar Faiyaj  
+PostGraduate Biotechnology Student | Aspiring Ph.D. Researcher | Bioinformatics Enthusiast
+
+---
+
+## 🔗 GitHub
+[https://github.com/mdabrarfaiyaj/yeast-genome-analysis](https://github.com/mdabrarfaiyaj/yeast-genome-analysis)
