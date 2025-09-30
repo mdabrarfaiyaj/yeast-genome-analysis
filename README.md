@@ -48,7 +48,7 @@ Place all output files in the `results/` folder:
   
 ### Genome Composition
 - Coding sequences are the approximately 42.5% of the genome 
-- Non-coding DNA are the almost 57.5% of the genome 
+- Non-coding sequences are the almost 57.5% of the genome 
 
 ---
 
