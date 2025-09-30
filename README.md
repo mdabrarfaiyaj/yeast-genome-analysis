@@ -36,14 +36,19 @@ Place all output files in the `results/` folder:
 
 ## 🧾 Analysis and Interpretation
 
-### GC Content Distribution
-- Coding regions: ~40% GC  
-- Non-coding regions: ~38% GC  
-- Mitochondrial DNA: <25% GC
-
+### GC Content Distribution Across Coding and Non-coding Regions
+- The Coding regions show consistently higher GC content (~0.40) than non-coding (~0.38). 
+- Mitochondrial DNA (chromosome M) displays much lower GC content (<0.25), reflecting its distinct evolutionary origin.
+- Higher GC in coding sequences suggests greater DNA stability, codon usage optimization, and efficient transcription.
+  
+### Genome-wide Average GC Content
+- Coding: ~40%
+- Non-coding: ~38%
+- Even small GC differences are biologically significant, influencing gene structure, transcriptional activity, and genome evolution.
+  
 ### Genome Composition
-- Coding DNA: ~42.5%  
-- Non-coding DNA: ~57.5%  
+- Coding sequences are the approximately 42.5% of the genome 
+- Non-coding DNA are the almost 57.5% of the genome 
 
 ---
 
