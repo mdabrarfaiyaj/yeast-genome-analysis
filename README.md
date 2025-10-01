@@ -72,3 +72,6 @@ PostGraduate Biotechnology Student | Aspiring Ph.D. Researcher | Bioinformatics 
 
 ## 🔗 GitHub
 [https://github.com/mdabrarfaiyaj/yeast-genome-analysis](https://github.com/mdabrarfaiyaj/yeast-genome-analysis)
+
+📌 License: This project is licensed under the MIT License. Please credit Md Abrar Faiyaj if reused.
+
