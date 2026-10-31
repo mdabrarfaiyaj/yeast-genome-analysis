@@ -10,7 +10,7 @@ Analysis of the *Saccharomyces cerevisiae* (baker's yeast) genome in R and Bioco
 
 The first version of this analysis (October 2025) contained a bug. The chromosome range had no strand (`*`), while the coding regions (CDS) were stranded (`+`/`-`). `setdiff()` therefore removed nothing, and **"non-coding" was the entire chromosome**. As a result, the first version reported:
 
-- coding DNA as **42.5%** of the genome, which is wrong (the true value is roughly **70%**, consistent with yeast being a gene-dense genome), and
+- coding DNA as **42.5%** of the genome, which is wrong (the corrected value is **72.6%**, consistent with yeast being a gene-dense genome), and
 - "non-coding" GC content that was really the GC content of whole chromosomes.
 
 **The fix** (now in `yeast_genome_analysis.R`):
@@ -51,7 +51,7 @@ GC content is also now weighted by length (total G+C divided by total bases) ins
 <img src="results/GCcontent_genomewide.png" width="500">
 <img src="results/genome_composition_pie.png" width="400">
 
-- **Coding DNA makes up roughly 70% of the yeast genome** (exact value in `genome_composition_pie.png`). Yeast genes are packed closely together, with short spaces between them.
+- **Coding DNA makes up 72.6% of the yeast genome**. Yeast genes are packed closely together, with short spaces between them.
 - **Coding DNA is GC-richer than non-coding DNA** on every nuclear chromosome (coding ≈ 40% GC). This fits the known pattern in yeast, where genes tend to have higher GC content than the DNA between them.
 - **The mitochondrial chromosome (chrM)** has very low GC content (well under 25%), reflecting its separate evolutionary history.
 
