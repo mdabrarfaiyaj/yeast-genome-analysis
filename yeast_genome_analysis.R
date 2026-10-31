@@ -2,6 +2,8 @@
 # Author: Md Abrar Faiyaj
 # Project: Genome Analysis of Yeast
 # Date: 10/1/2025
+# Updated: 31/10/2026 - fixed strand bug in non-coding regions;
+#          GC content now weighted by number of bases
 # =========================
 
 # Load packages
@@ -44,7 +46,10 @@ for (chr in chrom_names) {
   cds_chr <- cds_all[seqnames(cds_all) == chr]
   cds_chr
   if (length(cds_chr) > 0) {
-    cds_chr_merged <- reduce(cds_chr)
+    # ignore.strand = TRUE: a base is coding if a gene covers it on either strand.
+    # (Bug fix: the chromosome range has no strand, so a stranded CDS range
+    #  was never subtracted and 'non-coding' was the whole chromosome.)
+    cds_chr_merged <- reduce(cds_chr, ignore.strand = TRUE)
     coding_seq <- getSeq(yeast_genome, cds_chr_merged)
     noncoding_ranges <- setdiff(chr_range, cds_chr_merged)
     noncoding_seq <- getSeq(yeast_genome, noncoding_ranges)
@@ -54,8 +59,9 @@ for (chr in chrom_names) {
   }
   
  # Compute stats
-  coding_gc <- if (length(coding_seq) > 0) mean(letterFrequency(coding_seq, "GC", as.prob = TRUE)) else NA
-  noncoding_gc <- if (length(noncoding_seq) > 0) mean(letterFrequency(noncoding_seq, "GC", as.prob = TRUE)) else NA
+  # GC content weighted by bases (total G+C / total length), not an average of segments
+  coding_gc <- if (length(coding_seq) > 0) sum(letterFrequency(coding_seq, "GC")) / sum(width(coding_seq)) else NA
+  noncoding_gc <- if (length(noncoding_seq) > 0) sum(letterFrequency(noncoding_seq, "GC")) / sum(width(noncoding_seq)) else NA
   
   coding_bases <- sum(width(coding_seq))
   noncoding_bases <- sum(width(noncoding_seq))
@@ -105,11 +111,12 @@ p2 <- ggplot(genome_summary, aes(x = "", y = Fraction, fill = Region)) +
   theme(panel.background = element_rect(fill = "white", color = "white")) +
   geom_text(aes(label = Label), position = position_stack(vjust = 0.5), color = "black")
 ggsave("results/genome_composition_pie.png", plot = p2, width = 6, height = 6, bg = "white")
+print(genome_summary)
 p2
 # 3. GC% genome-wide (avg per region) with full title showing
 avg_gc <- all_results %>%
   group_by(Region) %>%
-  summarise(Mean_GC = mean(GC_Content, na.rm = TRUE))
+  summarise(Mean_GC = sum(GC_Content * Bases, na.rm = TRUE) / sum(Bases))
 
 p3 <- ggplot(avg_gc, aes(x = Region, y = Mean_GC, fill = Region)) +
   geom_bar(stat = "identity", width = 0.6) +
